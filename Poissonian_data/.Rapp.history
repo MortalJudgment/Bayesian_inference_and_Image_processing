@@ -1,0 +1,305 @@
+# Initialisation #
+y=rep(0,13)#
+lambda=1#
+for (i in 1:13)#
+{while(y[i]<4) y[i]=rpois(1, lambda)}#
+niter=2000#
+lambdas=rep(0,niter)#
+lambdasest=rep(0,niter)#
+lam=rep(0,niter)#
+ for(j in 1:niter)#
+ {#
+ lambda=rgamma(1,shape = 313+sum(y), scale = 1/360) #
+ y=rep(0,13)#
+ for (i in 1:13)#
+  {while(y[i]<4) y[i]=rpois(1, lambda)}#
+  lambdahat=(313+sum(y))/360#
+  #lambdas[j]=lambda#
+  lambdasest[j]=lambdahat#
+  lam[j]=lambda#
+ }#
+ #Diagnostic de convergence: pour voir l'évolution de la moy emp des lambdas#
+ par(mfrow=c(1,3))#
+ moyLam=cumsum(lambdasest)/(1:niter)#
+ moylam=cumsum(lam)/(1:niter)#
+ plot(moyLam, type='l', ylab='moy de lambda estimé', xlab="iterations")#
+ plot(moylam, type='l',add=TRUE)#
+ #Estimées post burn-in#
+ mean(lambdasest[1000:2000])#
+ hist(lam[1000:2000],main='', xlab='lambda est.')#
+ hist(lambdasest[1000:2000],main='', xlab='lambda est.')#
+  par(mfrow=c(1,1))#
+ #mean(lambdas[1000:2000])#
+ #par(mfrow=c(1,2))#
+ #plot(lambdas,type='l')#
+ #hist(lambdas[1000:2000],main='')#
+ #hist(lambdasest[1000:2000],main='')#
+  #par(mfrow=c(1,1))
+plot(moyLam, type='l', ylab='moy de lambda estimé', xlab="iterations")#
+ plot(moylam, type='l',add.plot=TRUE)
+plot(moyLam, type='l', ylab='moy de lambda estimé', xlab="iterations")#
+ lines(moylam)
+par(mfrow=c(1,3))#
+ moyLam=cumsum(lambdasest)/(1:niter)#
+ moylam=cumsum(lam)/(1:niter)#
+ plot(moyLam, type='l', ylab='moy de lambda estimé', xlab="iterations")#
+ lines(moylam)#
+ #Estimées post burn-in#
+ mean(lambdasest[1000:2000])#
+ hist(lam[1000:2000],main='', xlab='lambda est.')#
+ hist(lambdasest[1000:2000],main='', xlab='lambda est.')#
+  par(mfrow=c(1,1))
+# Initialisation #
+y=rep(0,13)#
+lambda=1#
+for (i in 1:13)#
+{while(y[i]<4) y[i]=rpois(1, lambda)}#
+niter=2000#
+lambdas=rep(0,niter) #for the Non-Rao-Blackwell estimates#
+lambdasest=rep(0,niter) #for the Rao-Blackwell estimates#
+ for(j in 1:niter)#
+ {#
+ lambda=rgamma(1,shape = 313+sum(y), scale = 1/360) #
+ y=rep(0,13)#
+ for (i in 1:13)#
+  {while(y[i]<4) y[i]=rpois(1, lambda)}#
+  lambdahat=(313+sum(y))/360#
+  lambdasest[j]=lambdahat#
+  lambdas[j]=lambda#
+ }#
+ #Diagnostic de convergence: pour voir l'évolution de la moy emp des lambdas#
+ par(mfrow=c(1,3))#
+ moyLam=cumsum(lambdasest)/(1:niter) # Empir avg of Rao Blackwell estim#
+ moylam=cumsum(lambdas)/(1:niter) #Empirical average of lambdas#
+ plot(moyLam, type='l', ylab='moy de lambda estimé', xlab="iterations")#
+ lines(moylam)#
+ #Estimées post burn-in#
+ mean(lambdasest[1000:2000]) # Rao-Blackwell estimate#
+ hist(lambdas[1000:2000],main='Empirical Average')#
+ hist(lambdasest[1000:2000],main='Rao-Blackwell')#
+  par(mfrow=c(1,1))#
+ #mean(lambdas[1000:2000])#
+ #par(mfrow=c(1,2))#
+ #plot(lambdas,type='l')#
+ #hist(lambdas[1000:2000],main='')#
+ #hist(lambdasest[1000:2000],main='')#
+  #par(mfrow=c(1,1))
+# Initialisation #
+y=rep(0,13)#
+lambda=1#
+for (i in 1:13)#
+{while(y[i]<4) y[i]=rpois(1, lambda)}#
+niter=2000#
+lambdas=rep(0,niter) #for the Non-Rao-Blackwell estimates#
+lambdasest=rep(0,niter) #for the Rao-Blackwell estimates#
+ for(j in 1:niter)#
+ {#
+ lambda=rgamma(1,shape = 313+sum(y), scale = 1/360) #
+ y=rep(0,13)#
+ for (i in 1:13)#
+  {while(y[i]<4) y[i]=rpois(1, lambda)}#
+  lambdahat=(313+sum(y))/360#
+  lambdasest[j]=lambdahat#
+  lambdas[j]=lambda#
+ }#
+ #Diagnostic de convergence: pour voir l'évolution de la moy emp des lambdas#
+ par(mfrow=c(1,3))#
+ moyLam=cumsum(lambdasest)/(1:niter) # Empir avg of Rao Blackwell estim#
+ moylam=cumsum(lambdas)/(1:niter) #Empirical average of lambdas#
+ plot(moyLam, type='l', ylab='', xlab="iterations")#
+ lines(moylam)#
+ #Estimées post burn-in#
+ mean(lambdasest[1000:2000]) # Rao-Blackwell estimate#
+ hist(lambdas[1000:2000],main='Empirical Average', xlab="")#
+ hist(lambdasest[1000:2000],main='Rao-Blackwell', xlab="")#
+  par(mfrow=c(1,1))#
+ #mean(lambdas[1000:2000])#
+ #par(mfrow=c(1,2))#
+ #plot(lambdas,type='l')#
+ #hist(lambdas[1000:2000],main='')#
+ #hist(lambdasest[1000:2000],main='')#
+  #par(mfrow=c(1,1))
+# Initialisation #
+y=rep(0,13)#
+lambda=1#
+for (i in 1:13)#
+{while(y[i]<4) y[i]=rpois(1, lambda)}#
+niter=2000#
+lambdas=rep(0,niter) #for the Non-Rao-Blackwell estimates#
+lambdasest=rep(0,niter) #for the Rao-Blackwell estimates#
+ for(j in 1:niter)#
+ {#
+ lambda=rgamma(1,shape = 313+sum(y), scale = 1/360) #
+ y=rep(0,13)#
+ for (i in 1:13)#
+  {while(y[i]<4) y[i]=rpois(1, lambda)}#
+  lambdahat=(313+sum(y))/360#
+  lambdasest[j]=lambdahat#
+  lambdas[j]=lambda#
+ }#
+ #Diagnostic de convergence: pour voir l'évolution de la moy emp des lambdas#
+ par(mfrow=c(1,3))#
+ moyLam=cumsum(lambdasest)/(1:niter) # Empir avg of Rao Blackwell estim#
+ moylam=cumsum(lambdas)/(1:niter) #Empirical average of lambdas#
+ plot(moylam, type='l', ylab='', xlab="iterations")#
+ lines(moyLam)#
+ #Estimées post burn-in#
+ mean(lambdasest[1000:2000]) # Rao-Blackwell estimate#
+ hist(lambdas[1000:2000],main='Empirical Average', xlab="")#
+ hist(lambdasest[1000:2000],main='Rao-Blackwell', xlab="")#
+  par(mfrow=c(1,1))#
+ #mean(lambdas[1000:2000])#
+ #par(mfrow=c(1,2))#
+ #plot(lambdas,type='l')#
+ #hist(lambdas[1000:2000],main='')#
+ #hist(lambdasest[1000:2000],main='')#
+  #par(mfrow=c(1,1))
+# Initialisation #
+y=rep(0,13)#
+lambda=1#
+for (i in 1:13)#
+{while(y[i]<4) y[i]=rpois(1, lambda)}#
+niter=2000#
+lambdas=rep(0,niter) #for the Non-Rao-Blackwell estimates#
+lambdasest=rep(0,niter) #for the Rao-Blackwell estimates#
+ for(j in 1:niter)#
+ {#
+ lambda=rgamma(1,shape = 313+sum(y), scale = 1/360) #
+ y=rep(0,13)#
+ for (i in 1:13)#
+  {while(y[i]<4) y[i]=rpois(1, lambda)}#
+  lambdahat=(313+sum(y))/360#
+  lambdasest[j]=lambdahat#
+  lambdas[j]=lambda#
+ }#
+ #Diagnostic de convergence: pour voir l'évolution de la moy emp des lambdas#
+ par(mfrow=c(1,3))#
+ moyLam=cumsum(lambdasest)/(1:niter) # Empir avg of Rao Blackwell estim#
+ moylam=cumsum(lambdas)/(1:niter) #Empirical average of lambdas#
+ plot(moylam, type='l', ylab='', xlab="iterations")#
+ lines(moyLam, col='red')#
+ #Estimées post burn-in#
+ mean(lambdasest[1000:2000]) # Rao-Blackwell estimate#
+ hist(lambdas[1000:2000],main='Empirical Average', xlab="")#
+ hist(lambdasest[1000:2000],main='Rao-Blackwell', xlab="")#
+  par(mfrow=c(1,1))#
+ #mean(lambdas[1000:2000])#
+ #par(mfrow=c(1,2))#
+ #plot(lambdas,type='l')#
+ #hist(lambdas[1000:2000],main='')#
+ #hist(lambdasest[1000:2000],main='')#
+  #par(mfrow=c(1,1))
+mean(lambdas[1000:2000])
+# Les données#
+Failures=c(5, 1, 5, 14, 3, 19, 1, 1, 4, 22)#
+Times=c(94.32, 15.72, 62.88, 125.76, 5.24, 31.44, 1.05, 1.05, 2.10, 10.48)#
+#
+Nx=length(Failures)#
+#
+# Hyperparamètres#
+alpha=1.8; gamma=0.01; delta=1;#
+Nsim=5000 # Nombre d'iterations#
+#
+#Allocation memoire#
+lambda=matrix(0, nr=Nsim, nc=Nx)#
+beta=rep(0, Nsim)#
+#
+#Initialisation#
+beta[1]=rgamma(1, shape=gamma, rate=1/delta)#
+#
+#Gibbs#
+for (j in 2:Nsim)#
+ {#
+for (i in 1:Nx)#
+   {lambda[j,i]=rgamma(1, shape=Failures[i]+alpha, rate=Times[i]+beta[j-1])#
+   	beta[j]=rgamma(1, shape=gamma+Nx*alpha, rate=delta+sum(lambda[j,]))#
+ 	}#
+ }#
+#
+# Tracés et estimées#
+burnin=500#
+par(mfrow=c(1,3))#
+hist(beta[(burnin+1):Nsim], main="Hist de beta")#
+lambda1=lambda[,1]#
+hist(lambda1[(burnin+1):Nsim], main="Hist de lambda1")#
+lambda2=lambda[,2]#
+hist(lambda2[(burnin+1):Nsim], main="Hist de lambda2")#
+par(mfrow=c(1,1))#
+#
+(betahat=mean(beta[(burnin+1):Nsim]) )#
+(lambda1hat=mean(lambda1[(burnin+1):Nsim]) )#
+(lambda2hat=mean(lambda2[(burnin+1):Nsim]) )
+# Les données#
+Failures=c(5, 1, 5, 14, 3, 19, 1, 1, 4, 22)#
+Times=c(94.32, 15.72, 62.88, 125.76, 5.24, 31.44, 1.05, 1.05, 2.10, 10.48)#
+#
+Nx=length(Failures)#
+#
+# Hyperparamètres#
+alpha=1.8; gamma=0.01; delta=1;#
+Nsim=5000 # Nombre d'iterations#
+#
+#Allocation memoire#
+lambda=matrix(0, nr=Nsim, nc=Nx)#
+beta=rep(0, Nsim)#
+#
+#Initialisation#
+beta[1]=rgamma(1, shape=gamma, rate=1/delta)#
+#
+#Gibbs#
+for (j in 2:Nsim)#
+ {#
+for (i in 1:Nx)#
+   {lambda[j,i]=rgamma(1, shape=Failures[i]+alpha, rate=Times[i]+beta[j-1])#
+   	beta[j]=rgamma(1, shape=gamma+Nx*alpha, rate=delta+sum(lambda[j,]))#
+ 	}#
+ }#
+#
+# Tracés et estimées#
+burnin=500#
+par(mfrow=c(1,3))#
+hist(beta[(burnin+1):Nsim], main="Hist of beta", xlab="")#
+lambda1=lambda[,1]#
+hist(lambda1[(burnin+1):Nsim], main="Hist of lambda1",xlab="")#
+lambda2=lambda[,2]#
+hist(lambda2[(burnin+1):Nsim], main="Hist of lambda2",xlab="")#
+par(mfrow=c(1,1))#
+#
+(betahat=mean(beta[(burnin+1):Nsim]) )#
+(lambda1hat=mean(lambda1[(burnin+1):Nsim]) )#
+(lambda2hat=mean(lambda2[(burnin+1):Nsim]) )
+# Initialisation #
+y=rep(0,13)#
+lambda=1#
+for (i in 1:13)#
+{while(y[i]<4) y[i]=rpois(1, lambda)}#
+niter=2000#
+lambdas=rep(0,niter) #for the Non-Rao-Blackwell estimates#
+lambdasest=rep(0,niter) #for the Rao-Blackwell estimates#
+ for(j in 1:niter)#
+ {#
+ lambda=rgamma(1,shape = 313+sum(y), scale = 1/360) #
+ y=rep(0,13)#
+ for (i in 1:13)#
+  {while(y[i]<4) y[i]=rpois(1, lambda)}#
+  lambdahat=(313+sum(y))/360#
+  lambdasest[j]=lambdahat#
+  lambdas[j]=lambda#
+ }#
+ #Diagnostic de convergence: pour voir l'évolution de la moy emp des lambdas#
+ par(mfrow=c(1,3))#
+ moyLam=cumsum(lambdasest)/(1:niter) # Empir avg of Rao Blackwell estim#
+ moylam=cumsum(lambdas)/(1:niter) #Empirical average of lambdas#
+ plot(moylam, type='l', ylab='', xlab="iterations")#
+ lines(moyLam, col='red')#
+ #Estimées post burn-in#
+ mean(lambdasest[1000:2000]) # Rao-Blackwell estimate#
+ hist(lambdas[1000:2000],main='Empirical Average', xlab="")#
+ hist(lambdasest[1000:2000],main='Rao-Blackwell', xlab="")#
+  par(mfrow=c(1,1))#
+ #mean(lambdas[1000:2000])#
+ #par(mfrow=c(1,2))#
+ #plot(lambdas,type='l')#
+ #hist(lambdas[1000:2000],main='')#
+ #hist(lambdasest[1000:2000],main='')#
+  #par(mfrow=c(1,1))

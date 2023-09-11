@@ -1,0 +1,32 @@
+y=zeros(1,13);
+lambda=1;
+for i = 1 : 13
+    while(y(i)<4 )
+        y(i) = poissrnd(lambda,1,1);
+    end
+end
+niter=2000;
+lambdas=zeros(1, niter); % for the  non-Rao-Blackwell estimates
+lambdasest=zeros(1, niter); % for the  Rao-Blackwell estimates
+
+for j = 1 :niter
+   lambda= gamrnd(313+sum(y), 1/360, 1,1);
+   y=zeros(1,13);
+   for i = 1 : 13
+      while(y(i)<4 )
+        y(i) = poissrnd(lambda,1,1);
+       end
+   end
+   lambdahat=(313+sum(y))/360;
+   lambdasest(j)=lambdahat;
+   lambda(j)=lambda;
+end
+
+
+% Convergence
+lambdabarRB=zeros(1,niter);
+for i = 1:niter 
+		lambdabarRB(i) = mean(lambdasest(1:i));
+end
+figure(1);plot(1:niter,lambdabarRB);xlabel('iterations');ylabel('Moyennes des estimées'); 
+title('Evolution of the R-B empirical average')
