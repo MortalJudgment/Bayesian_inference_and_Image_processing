@@ -1,2 +1,2 @@
-# Bayesian inference and Image processing
-## Prof. Diarra Fall (1/2023)
+# Bayesian inference and Image processing (01/2023)
+## Prof. Diarra Fall
